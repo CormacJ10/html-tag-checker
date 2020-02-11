@@ -1,142 +1,4 @@
 $(document).ready(function() {
-
-	// function insertParam(key, value)
-	// {
-	//     key = encodeURI(key); value = encodeURI(value);
-
-	//     var kvp = document.location.search.substr(1).split('&');
-
-	//     var i=kvp.length; var x; while(i--) 
-	//     {
-	//         x = kvp[i].split('=');
-
-	//         if (x[0]==key)
-	//         {
-	//             x[1] = value;
-	//             kvp[i] = x.join('=');
-	//             break;
-	//         }
-	//     }
-
-	//     if(i<0) {kvp[kvp.length] = [key,value].join('=');}
-
-	//     //this will reload the page, it's likely better to store this until finished
-	//     document.location.search = kvp.join('&'); 
-	// }
-	
-	$("#cost-of-car-1").keypress(function (e) {
-	    if(e.which == 46){
-	        if($(this).val().indexOf('.') != -1) {
-	            return false;
-	        }
-	    }
-
-	    if (e.which != 8 && e.which != 0 && e.which != 46 && (e.which < 48 || e.which > 57)) {
-	        return false;
-	    }
-	});
-	
-	$("#i-can-afford-2").keypress(function (e) {
-	    if(e.which == 46){
-	        if($(this).val().indexOf('.') != -1) {
-	            return false;
-	        }
-	    }
-
-	    if (e.which != 8 && e.which != 0 && e.which != 46 && (e.which < 48 || e.which > 57)) {
-	        return false;
-	    }
-	});
-	
-	/* Hero scrolling */
-	$(document).on('click touch', '.scroll-why', function (event) {
-	    event.preventDefault();
-
-	    $('html, body').animate({
-	        scrollTop: $('.one').offset().top
-	    }, 500);
-	});
-	
-	$(document).on('click touch', '.scroll-faqs, #mob-2', function (event) {
-	    event.preventDefault();
-
-	    $('html, body').animate({
-	        scrollTop: $('.faq').offset().top
-	    }, 500);
-	});
-	
-	$(document).on('click touch', '.scroll-region, #mob-3', function (event) {
-	    event.preventDefault();
-
-	    $('html, body').animate({
-	        scrollTop: $('.contact-scroll').offset().top
-	    }, 500);
-	});
-	
-	/* additional mobile scrolling */
-	$(document).on('click touch', '#mob-1', function (event) {
-	    event.preventDefault();
-
-	    $('html, body').animate({
-	        scrollTop: $('section.calculator').offset().top
-	    }, 500);
-	});
-	
-	$(document).on('click touch', '.open-callback', function (event) {
-		event.preventDefault();
-			
-		$('body').addClass('open-cbmodal');
-	});
-	
-	$(document).on('click touch', '.cbmodal-close', function (event) {
-		$('body').removeClass('open-cbmodal');
-	});
-	
-
-	$(document).on('click touch', '.open-guide', function (event) {
-		event.preventDefault();
-			
-		$('body').addClass('open-dgmodal');
-	});
-	
-	$(document).on('click touch', '.dgmodal-close', function (event) {
-		$('body').removeClass('open-dgmodal');
-		// console.log("hello");
-	});
-
-	// $(document).on('click touch', '.download-guide', function (event) {
-	// 	event.preventDefault();
-	// 	var guide=$(".open-guide").attr("data-ref");
-	// 	window.open(guide);
-	// 	$('body').removeClass('open-guide');
-	// });
-
-	var calctimeout;
-	var activetab = 1; // 1 = the-car-i-want-costs, 2 = i-can-afford-to-pay
-	var oldVal;
-	
-	/* switch tab */
-	// $(document).on('click touch', 'section.calculator .calculator-header .header-navi > ul > li', function(event){
-	// 	event.preventDefault();
-	// 	$("section.calculator .calculator-header .header-navi > ul > li").removeClass('active');
-	// 	$(this).addClass('active');
-		
-	// 	if($(this).index() == 0){
-	// 		activetab = 1;
-	// 		$("#i-can-afford-to-pay").hide();
-	// 		$("#the-car-i-want-costs").show();
-	// 	} else {
-	// 		activetab = 2;
-	// 		$("#the-car-i-want-costs").hide();
-	// 		$("#i-can-afford-to-pay").show();
-	// 	}
-	// 	$("#target-1").hide();
-	// 	$("#target-1-val").html('$');
-	// 	$("#target-2").hide();
-	// 	$("#target-2-val").html('$');
-	// 	$('section.calculator .calculator-main .main-form .form-calculate .calculate-button').show();
-		
-	// });
 	
 	/* calculator */
 	$('form.form .input.cost').on('change textInput input', function () {
@@ -481,11 +343,6 @@ $(document).ready(function() {
 				}
 				$("#target-borrow-fullTermAmountPayable").html('$' + numberWithCommasTwo(returnedData[1])+'');
 				$("#apply-btn-calculator-modal").attr('href', 'https://apply.mtf.co.nz/?purchaseprice='+principle2+'&term='+term2+'&paymentfrequency='+payments2+'&mbiterm=0' + rpVariant + genParams());
-				// $("#target-2-val").html('<b>$' + numberWithCommas(returnedData[0]) + '</b>');
-				// //$("#target-2-terms").html('Full term amount payable of ' + returnedData[1]  + '. Based on an example annual fixed interest rate of 13.75%, with an establishment fee of $367 and a monthly maintenance fee of $8.20. Estimate only.');
-				// $("#target-2-terms").html('Example annual fixed interest rate of 12.95%. Actual rate may be higher or lower. Example includes an establishment fee of $376 and monthly maintenance fee of $8.50. Fees vary by MTF Finance location. Full term amount payable of ' + returnedData[1]  + '. Estimate only, not an offer of finance. Terms, conditions and lending criteria apply. For information about contract terms, interest rates and fees see <a target="_blank" href="https://www.mtf.co.nz/pdf/Current_Cost_of_Borrowings.pdf">MTF Finance cost of borrowing</a>.');
-				// $("#apply-btn-afford").attr('href', 'https://apply.mtf.co.nz/?purchaseprice='+principle2+'&term='+term2+'&paymentfrequency='+payments2+'&mbiterm=0' + genParams());
-				// $("#target-2").show();
 			});
 		}
 	});
@@ -508,8 +365,6 @@ $(document).ready(function() {
 		function numberWithCommasTwo(number) {
                             var parts = number.toString().split(".");
                             parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                            // parts[1] = parts[1]+("0".repeat(parts[1].length));
-                            // console.log(parts+"\n");
                             if(parts.length > 1){
                                 if(parts[parts.length -1].length != 2){
                                     parts[parts.length -1] = parts[parts.length -1] + ("0".repeat(parts[parts.length -1].length));
@@ -774,66 +629,9 @@ $(document).ready(function() {
 				}				
 				$("#target-borrow-payment").html(" ");
 				$("#apply-btn-calculator-modal").attr('href', 'https://apply.mtf.co.nz/?purchaseprice='+principle2+'&term='+term2+'&paymentfrequency='+payments2+'&mbiterm=0' + rpVariant + genParams());
-				// $("#target-2-val").html('<b>$' + numberWithCommas(returnedData[0]) + '</b>');
-				// //$("#target-2-terms").html('Full term amount payable of ' + returnedData[1]  + '. Based on an example annual fixed interest rate of 13.75%, with an establishment fee of $367 and a monthly maintenance fee of $8.20. Estimate only.');
-				// $("#target-2-terms").html('Example annual fixed interest rate of 12.95%. Actual rate may be higher or lower. Example includes an establishment fee of $376 and monthly maintenance fee of $8.50. Fees vary by MTF Finance location. Full term amount payable of ' + returnedData[1]  + '. Estimate only, not an offer of finance. Terms, conditions and lending criteria apply. For information about contract terms, interest rates and fees see <a target="_blank" href="https://www.mtf.co.nz/pdf/Current_Cost_of_Borrowings.pdf">MTF Finance cost of borrowing</a>.');
-				// $("#apply-btn-afford").attr('href', 'https://apply.mtf.co.nz/?purchaseprice='+principle2+'&term='+term2+'&paymentfrequency='+payments2+'&mbiterm=0' + genParams());
-				// $("#target-2").show();
 			});
 		}
 	});
-	
-    /* Why Carousel */
-    // var $whyCarousel = $('[data-carousel="why"] > .slick').slick({
-    //     appendArrows: $('[data-pagination="why"] .pagination-arrows'),
-    //     nextArrow: '<div class="arrow arrow-next"></div>',
-    //     prevArrow: '<div class="arrow arrow-prev"></div>',
-    //     rows: 0,
-    //     slidesToShow: 3,
-    //     speed: 400,
-    //     responsive: [
-    //         {
-    //             breakpoint: 1122,
-    //             settings: {
-    //                 slidesToShow: 1
-    //             }
-    //         }
-    //     ]
-    // });
-    
-    
-    /* Testimonials Carousel */
-    // var $testimonialsCarousel = $('[data-carousel="testimonials"] > .slick').slick({
-    //     appendArrows: $('[data-pagination="testimonials"] .pagination-arrows'),
-    //     centerMode: true,
-    //     centerPadding: '0',
-    //     nextArrow: '<div class="arrow arrow-next"></div>',
-    //     prevArrow: '<div class="arrow arrow-prev"></div>',
-    //     rows: 0,
-    //     slidesToShow: 3,
-    //     speed: 400,
-    //     responsive: [
-    //         {
-    //             breakpoint: 1122,
-    //             centerMode: false,
-    //             settings: {
-    //                 slidesToShow: 1
-    //             }
-    //         }
-    //     ]
-    // });
-    
-    
-    /* Type of Finance Carousel */
-    // var $typeoffinanceCarousel = $('[data-carousel="typeoffinance"] > .slick').slick({
-    //     appendArrows: $('[data-pagination="typeoffinance"] .pagination-arrows'),
-    //     nextArrow: '<div class="arrow arrow-next"></div>',
-    //     prevArrow: '<div class="arrow arrow-prev"></div>',
-    //     rows: 0,
-    //     slidesToShow: 1,
-    //     speed: 400
-    // });
-    
     
     /* FAQ Buttons */
     $(document).on('click touch', 'section.faq .faq-main .main-item', function(e) {
@@ -858,23 +656,4 @@ $(document).ready(function() {
         $('.main-item.active [data-button="view"]').not(this).closest('.main-item').removeClass('active').find('.details-list').stop().slideUp(400);
         $(this).closest('.main-item').toggleClass('active').find('.details-list').stop().slideToggle(400);
     });
-    
-    
-    /* Footer */
- //    $(window).on('scroll', function() {
- //        var offsetTop = $('section.intro').offset().top;
- //        var scrollTop = $(window).scrollTop();
-        
- //        if((scrollTop > offsetTop) && !$('section.footer').hasClass('active')) {
- //            $('section.footer').addClass('active');
- //        }
- //        else if((scrollTop < offsetTop) && $('section.footer').hasClass('active')) {
- //            $('section.footer').removeClass('active');
- //        }
-	// });
-	
-	// $("#qsa").val(genParamsCallback());
-
-	
-	
 });
