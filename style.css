@@ -69,7 +69,7 @@ a:hover {
 	border: none;
 	border-radius: 25px;
 	outline: none;
-	background: #F5821F;
+	background: #e91a83;
 	font-size: 17px;
 	font-size: 1.0625rem;
 	font-weight: 700;
@@ -80,7 +80,7 @@ a:hover {
 }
 .btn:hover {
 	color: #FFF;
-	background-color: #F58220;
+	background-color: #e91a83;
 	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .36);
 }
 
@@ -236,7 +236,7 @@ section.hero .hero-content {
 	max-width: 450px;
 }
 section.hero .hero-content .content-title {
-	color: #202F65;
+	color: #333;
 	font-family: Proxima Sans Medium, Arial, sans-serif;
 	font-size: 45px;
 	font-size: 2.700rem;
@@ -333,7 +333,7 @@ footer.footer .footer-main .main-content .content-callnow a {
 	line-height: 25px;
 }
 footer.footer .footer-main .main-content .content-callnow a:hover {
-	color: #F58220;
+	color: #e91a83;
 }
 footer.footer .footer-legal {
 	padding-top: 20px;
@@ -365,7 +365,7 @@ footer.footer .footer-legal .legal-content a {
 	line-height: 20px;
 }
 footer.footer .footer-legal .legal-content a:hover {
-	color: #F58220;
+	color: #e91a83;
 }
 
 /* Modal */
@@ -422,7 +422,7 @@ section.modal .modal-content .content-header .header-close {
 	transition: opacity .2s ease-in-out;
 	text-indent: 100%;
 	color: transparent;
-	background: url("./assets_ebook/static/img/icons/modal/close.svg") center no-repeat;
+	background: url("./assets/img/close.svg") center no-repeat;
 	background-size: contain;
 	font-size: 0;
 }
@@ -553,7 +553,7 @@ body:not(.open-modal) section.modal .modal-wrapper {
 		padding-top: 20px;
 		text-align: center;
 		text-indent: 0;
-		color: #F58220;
+		color: #e91a83;
 		background-position: center top;
 		background-size: 20px 20px;
 		font-size: 12px;
