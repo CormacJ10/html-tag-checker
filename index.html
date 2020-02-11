@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="assets/css/animate.css" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.0.2/nouislider.css" integrity="sha256-4C7m+UgUV2kxtJghiwom8uM4hbJHHYCn/bwN7yLTshY=" crossorigin="anonymous" />
+    <title>Joshua's Solution</title>
+
+  </head>
+<body>
+	<section class="wrapper">
+		<section class='header'>
+			<div class="container wow fadeInSmallUp" data-wow-delay="0.8s">
+				<a class="header-logo" href='#' target='_blank'>
+					<img src="assets/img/Tag-Checker-Logo.png" />
+				</a>
+			</div>
+		</section>
+
+		<section class="hero">
+			<div class="container">
+				<div class="hero-wrapper">
+					<div class="wrapper-left">
+						<div class="hero-image wow fadeInDown">
+							<img src="assets/img/tag-checker-svg.svg" />
+						</div>
+					</div>
+					<div class="wrapper-right">
+						<div class="hero-content wow fadeInSmallRight">
+							<div class="content-title">Upload your file via the button below</div>
+							<div class="content-text">
+								<p></p>
+							</div>
+							<div class="hero-btn-block wow fadeInSmallRight">
+								<a class="content-btn-block btn open-modal" id='ebook-dl-btn-lp' href="#">Submit</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<footer>
+			<div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-10 offset-md-1">
+                    </div>
+                    <div class="col-8 col-md-5 offset-md-1">
+                    </div>
+                    <div class="col-4 col-md-5 text-right">
+                    </div>
+                </div>
+            </div>
+		</footer>
+	</section>
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("body").removeClass('hide');
+			new WOW().init();
+		});
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js" integrity="sha256-399DNRyfIpWIy1ZV0KmEIIuIQ5sBHdLu9MBtVHrNtt8=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.0.2/nouislider.js" integrity="sha256-krkpYRPLj2Sia09bne9gI1bgVHUihD54P23pOXbOzKk=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.1.0/wNumb.js" integrity="sha256-xC0fWUW1v+7ia0Y+6miyIGApnQkxDx++jeTPQImCvo0=" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="assets/js/main.js"></script>
+	<script type="text/javascript">
+		"use strict";
+		function afterReveal(el) {
+			el.addEventListener('animationstart', function (event) {
+                $('.wow').each(function () {
+                    $(this).css('opacity', 1);
+                });
+            });
+        }
+
+        new WOW({
+        	callback: afterReveal
+        }).init();
+	</script>
+</body>
+</html>
