@@ -1,10 +1,11 @@
 $(document).ready(function() {
 
-	// Form Validation - Mobile/Desktop Modal.
+	// Form Validation - Tag Checker
 
-	$(document).on('click touch', '.calculate-button', function (event) {
+	$(document).on('click touch', '#tag-check-btn', function (event) {
 		event.preventDefault();
 		$("#tag-check-results").addClass("validation-hide");
+		var fileData=$("#txt-file-input").val();
 		
 		$.get("/calculate.php?loanTerm="+term1+"&principle="+principle1+"&paymentFrequency="+payments1, function(data) {
 			// console.log(data.toString());

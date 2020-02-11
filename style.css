@@ -142,6 +142,9 @@ form.form .form-input::placeholder {
 form.form .form-submit:not(:first-child) {
 	margin-top: 30px;
 }
+.validation-hide{
+	display: none;
+}
 
 /* Wrapper */
 section.wrapper {
