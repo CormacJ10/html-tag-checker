@@ -33,7 +33,7 @@ $(document).ready(function() {
 		event.preventDefault();   
 		$("#tag-check-results").addClass("validation-hide");
 		var fileData=$("#txt-file-input").prop('files');
-		console.log(fileData[0].name);
+		console.log(fileData[0]);
 		
 		$.get(fileData[0].name, function(data) {
 			// console.log(data.toString());
