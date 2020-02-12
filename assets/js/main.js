@@ -52,44 +52,45 @@ function checkHTML(txt){
 		var textData=$("#txt-type-input").val();
 		// console.log(fileData[0]);
 		// console.log(textData.split(''));
-		var holderArray = new Array();
+		var holderOpenArray = new Array();
+		var holderCloseArray = new Array();
 		var openingTagsArray = new Array();
 		var closingTagsArray = new Array();
 		var lines = textData.split('\n');
 		for (var x = 0; x < lines.length; x++){
 			var openingTagsArray = lines[x].match(/<\w+((\s+\w+(\s*=\s*(?:".*?"|'.*?'|[^'">\s]+))?)+\s*|\s*)>/g);
 			var closingTagsArray = lines[x].match(/<(\/{1})\w+((\s+\w+(\s*=\s*(?:".*?"|'.*?'|[^'">\s]+))?)+\s*|\s*)>/g);
-			console.log(closingTagsArray);
-			if (openingTagsArray) {
+			closingTagsArray.reverse();//So that the indices for the opening and closing tags are the same.
+			// console.log(closingTagsArray);
+			if (openingTagsArray.length>0) {
 				for (var i = 0; i < openingTagsArray.length; i++) {
-					console.log(openingTagsArray[i]);
+					// console.log(openingTagsArray[i]);
 					var openingTagSubstring=openingTagsArray[i].substr(1, openingTagsArray[i].length-2);
 					var closingTagSubstring=closingTagsArray[i].substr(2, closingTagsArray[i].length-3);
-					console.log(openingTagSubstring);
-					console.log(closingTagSubstring);
-					if (closingTagsArray.length >= 0 && openingTagsArray) {
-						elementToPop = openingTagsArray[i].substr(1, tagsArray[i].length-2);
-						elementToPop = elementToPop.replace(/ /g, '');
-						for (var j = holderArray.length-1; j >= 0 ; j--) {
-							if (holderArray[j].element == elementToPop) {
-								holderArray.splice(j, 1);
-								if (elementToPop != 'html') {
-									break;
-							}
-						}
+					// console.log(openingTagSubstring);
+					// console.log(closingTagSubstring);
+					// console.log(openingTagSubstring == closingTagSubstring);
+					if (openingTagSubstring == closingTagSubstring) {
+						// If the tags are symmetrical and close each other, pop from their arrays.
+						holderOpenArray.push(openingTagsArray.shift());
+						holderCloseArray.push(closingTagsArray.shift());
 					}
-			}
-
+					if (openingTagSubstring != closingTagSubstring){
+						var expectedClosingTag="<\/"+openingTagSubstring+">";
+						$("#tag-validation").removeClass("validation-hide");
+						$("#tag-validation").addClass("validation-error");
+						$("#tag-validation").html("Expected "+expectedClosingTag+" found "+closingTagSubstring+".");
+						break;
+					}
+				}
 			}
 		}
-	}
                 
-		// if(checkHTML(textData.split(" "))){
+		if((holderCloseArray.length + holderOpenArray.length) % 2 == 0 && ((holderCloseArray.length + holderOpenArray.length) != 0)){
+			$("#tag-validation").removeClass("validation-hide");
+			$("#tag-validation").addClass("validation-correct");
 			$("#tag-validation").html("Correctly tagged paragraph");
-		// }
-		// else{
-			$("#tag-validation").html("Expected # found...");
-		// }
+		}
 		
 		// $.get(fileData[0].name, function(data) {
 			// console.log(data.toString());

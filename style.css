@@ -98,6 +98,18 @@ a:hover {
 }
 
 /* Form */
+.form-validation{
+	margin-top: 10px;
+	font-weight: 500;
+}
+
+.validation-correct{
+	color: #13ad51;
+}
+
+.validation-error{
+	color: #ff0505;
+}
 form.form .form-block:not(:first-child) {
 	margin-top: 15px;
 }
