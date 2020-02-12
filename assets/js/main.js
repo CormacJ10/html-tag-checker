@@ -46,8 +46,8 @@ function checkHTML(txt){
 		// var fileData=$("#txt-file-input").prop('files');
 		var textData=$("#txt-type-input").val();
 		// console.log(fileData[0]);
-		console.log(checkHTML(textData));
-		if(checkHTML(textData)){
+		// console.log(checkHTML(textData));
+		if(checkHTML(textData.split(" "))){
 			$("#tag-validation").html("Correctly tagged paragraph");
 		}
 		else{
