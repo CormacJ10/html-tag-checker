@@ -58,8 +58,8 @@ function checkHTML(txt){
 		var closingTagsArray = new Array();
 		var lines = textData.split('\n');
 		for (var x = 0; x < lines.length; x++){
-			var openingTagsArray = lines[x].match(/<\w+((\s+\w+(\s*=\s*(?:".*?"|'.*?'|[^'">\s]+))?)+\s*|\s*)>/g);
-			var closingTagsArray = lines[x].match(/<(\/{1})\w+((\s+\w+(\s*=\s*(?:".*?"|'.*?'|[^'">\s]+))?)+\s*|\s*)>/g);
+			var openingTagsArray = lines[x].match(/<[A-Z\s]+((\s+[A-Z\s]+(\s*=\s*(?:".*?"|'.*?'|[^'">\s]+))?)+\s*|\s*)>/g);
+			var closingTagsArray = lines[x].match(/<(\/{1})[A-Z\s]+((\s+[A-Z\s]+(\s*=\s*(?:".*?"|'.*?'|[^'">\s]+))?)+\s*|\s*)>/g);
 			closingTagsArray.reverse();//So that the indices for the opening and closing tags are the same.
 			// console.log(closingTagsArray);
 			if (openingTagsArray.length>0) {
@@ -68,18 +68,31 @@ function checkHTML(txt){
 					var openingTagSubstring=openingTagsArray[i].substr(1, openingTagsArray[i].length-2);
 					var closingTagSubstring=closingTagsArray[i].substr(2, closingTagsArray[i].length-3);
 					// console.log(openingTagSubstring);
-					// console.log(closingTagSubstring);
+					console.log(closingTagsArray[i]);
 					// console.log(openingTagSubstring == closingTagSubstring);
-					if (openingTagSubstring == closingTagSubstring) {
+					if ((openingTagSubstring == closingTagSubstring) && (openingTagsArray.length == closingTagsArray.length)) {
 						// If the tags are symmetrical and close each other, pop from their arrays.
 						holderOpenArray.push(openingTagsArray.shift());
 						holderCloseArray.push(closingTagsArray.shift());
 					}
-					if (openingTagSubstring != closingTagSubstring){
-						var expectedClosingTag="<\/"+openingTagSubstring+">";
+					if ((openingTagSubstring != closingTagSubstring) && (openingTagsArray.length == closingTagsArray.length)){
 						$("#tag-validation").removeClass("validation-hide");
 						$("#tag-validation").addClass("validation-error");
-						$("#tag-validation").html("Expected "+expectedClosingTag+" found "+closingTagSubstring+".");
+						$("#tag-validation").html("Expected '&#60;/"+openingTagSubstring+"&#62;' found '&#60;/"+closingTagSubstring+"&#62;'");
+						break;
+					}
+					if((openingTagSubstring != closingTagSubstring) && (closingTagsArray.length > openingTagsArray.length)){
+						// If there is a lose open tag, break the loop and return error message.
+						$("#tag-validation").removeClass("validation-hide");
+						$("#tag-validation").addClass("validation-error");
+						$("#tag-validation").html("Expected '&#35;' found '&#60;/"+closingTagSubstring+"&#62;'");
+						break;
+					}
+					if((openingTagSubstring != closingTagSubstring) && (openingTagsArray.length > closingTagsArray.length)){
+						// If there is a lose open tag, break the loop and return error message.
+						$("#tag-validation").removeClass("validation-hide");
+						$("#tag-validation").addClass("validation-error");
+						$("#tag-validation").html("Expected  '&#60;/"+openingTagSubstring+"&#62;' found '&#35;'");
 						break;
 					}
 				}
