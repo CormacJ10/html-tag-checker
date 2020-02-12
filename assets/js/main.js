@@ -25,26 +25,45 @@ $(document).ready(function() {
 
 // 	function receivedText() {
 // 		document.getElementById('editor').appendChild(document.createTextNode(fr.result));
-// 	} 
+// 	}
+
+function checkHTML(txt){
+	var stringCounter=0;
+	var openTagQueue;
+	var closeTagQueue;
+
+	while(stringCounter != $(txt).length){
+		console.log(stringCounter);
+		stringCounter++;
+	}
+}
 
 	// Form Validation - Tag Checker
 
 	$(document).on('click touch', '#tag-check-btn', function (event) {
 		event.preventDefault();   
-		$("#tag-check-results").addClass("validation-hide");
-		var fileData=$("#txt-file-input").prop('files');
-		console.log(fileData[0]);
+		// $("#tag-check-results").addClass("validation-hide");
+		// var fileData=$("#txt-file-input").prop('files');
+		var textData=$("#txt-type-input").val();
+		// console.log(fileData[0]);
+		console.log(checkHTML(textData));
+		if(checkHTML(textData)){
+			$("#tag-validation").html("Correctly tagged paragraph");
+		}
+		else{
+			$("#tag-validation").html("Expected # found...");
+		}
 		
-		$.get(fileData[0].name, function(data) {
+		// $.get(fileData[0].name, function(data) {
 			// console.log(data.toString());
-			var returnedData = data.split('|');
-			console.log(data);
+			// var returnedData = data.split('|');
+			// console.log(data);
 			//Set values for modal form.
 			
-			$("#tag-validation").html(returnedData[0]);
+			// $("#tag-validation").html(returnedData[0]);
 			// $("#target-borrow-payment").html('per ' + humanText);
 			// $("#target-borrow-fullTermAmountPayable").html('$' + numberWithCommasTwo(returnedData[1])+'');
 			// $("#apply-btn-calculator-modal").attr('href', 'https://apply.mtf.co.nz/?purchaseprice='+principle1+'&term='+term1+'&paymentfrequency='+payments1+'&mbiterm=0' + rpVariant + genParams());
-		});
+		// });
 	});
 });

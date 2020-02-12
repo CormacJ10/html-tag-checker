@@ -244,6 +244,7 @@ section.hero .hero-content .content-title {
 	font-size: 45px;
 	font-size: 2.700rem;
 	font-weight: 600;
+	margin-bottom: 20px;
 	/*font-style: italic;*/
 	line-height: 1;
 }
@@ -369,82 +370,6 @@ footer.footer .footer-legal .legal-content a {
 }
 footer.footer .footer-legal .legal-content a:hover {
 	color: #e91a83;
-}
-
-/* Modal */
-section.modal {
-	position: fixed;
-	z-index: 9999;
-	top: 0;
-	left: 0;
-	display: none;
-	overflow-x: hidden;
-	overflow-y: scroll;
-	-webkit-overflow-scrolling: touch;
-	width: 100%;
-	height: 100%;
-	padding: 120px 30px;
-	background: #050A1E;
-	background: rgba(5, 10, 30, .6);
-}
-section.modal .modal-wrapper {
-	width: 100%;
-	max-width: 610px;
-	margin: 0 auto;
-	transition: transform .2s ease-in-out;
-	backface-visibility: hidden;
-}
-section.modal .modal-content {
-	padding: 60px;
-	border-radius: 8px;
-	background: #FFF;
-}
-section.modal .modal-content .content-header {
-	position: relative;
-	z-index: 0;
-	padding-right: 10px;
-	padding-bottom: 20px;
-	border-bottom: 2px solid #F6F3EE;
-}
-section.modal .modal-content .content-header .header-title {
-	color: #202F65;
-	font-size: 25px;
-	font-size: 1.5625rem;
-	font-weight: 700;
-	line-height: 1;
-}
-section.modal .modal-content .content-header .header-close {
-	position: absolute;
-	z-index: -1;
-	top: -30px;
-	right: -30px;
-	overflow: hidden;
-	width: 20px;
-	height: 20px;
-	cursor: pointer;
-	transition: opacity .2s ease-in-out;
-	text-indent: 100%;
-	color: transparent;
-	background: url("./assets/img/close.svg") center no-repeat;
-	background-size: contain;
-	font-size: 0;
-}
-section.modal .modal-content .content-header .header-close:hover {
-	opacity: .75;
-}
-section.modal .modal-content .content-form:not(:first-child) {
-	margin-top: 30px;
-}
-body.open-modal {
-	overflow: hidden !important;
-}
-body:not(.open-modal) section.modal {
-	overflow: hidden !important;
-}
-body:not(.open-modal) section.modal .modal-wrapper {
-	-webkit-transform: scale(.5);
-	-ms-transform: scale(.5);
-	transform: scale(.5);
 }
 
 /* Responsive */
@@ -625,25 +550,6 @@ body:not(.open-modal) section.modal .modal-wrapper {
 		width: 100%;
 		padding-right: 0;
 		padding-left: 0;
-	}
-	
-	/* Modal */
-	section.modal {
-		padding: 40px 20px;
-	}
-	section.modal .modal-content {
-		padding: 30px;
-	}
-	section.modal .modal-content .content-header {
-		padding-right: 30px;
-	}
-	section.modal .modal-content .content-header .header-title {
-		font-size: 20px;
-		font-size: 1.25rem;
-	}
-	section.modal .modal-content .content-header .header-close {
-		top: -10px;
-		right: -10px;
 	}
 }
 
