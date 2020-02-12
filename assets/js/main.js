@@ -28,14 +28,19 @@ $(document).ready(function() {
 // 	}
 
 function checkHTML(txt){
-	var stringCounter=0;
-	var openTagQueue;
-	var closeTagQueue;
+	// $('#unclosed-tags-source').numberfy();
+	// var stringCounter=0;
+	// var openTagQueue;
+	// var closeTagQueue;
+	// var openString;
 
-	while(stringCounter != $(txt).length){
-		console.log(stringCounter);
-		stringCounter++;
-	}
+	// while(stringCounter != $(txt).length){
+	// 	console.log(stringCounter);
+	// 	$(txt).each(function(){
+	// 		console.log('');
+	// 	});
+	// 	stringCounter++;
+	// }
 }
 
 	// Form Validation - Tag Checker
@@ -46,13 +51,45 @@ function checkHTML(txt){
 		// var fileData=$("#txt-file-input").prop('files');
 		var textData=$("#txt-type-input").val();
 		// console.log(fileData[0]);
-		// console.log(checkHTML(textData));
-		if(checkHTML(textData.split(" "))){
+		// console.log(textData.split(''));
+		var holderArray = new Array();
+		var openingTagsArray = new Array();
+		var closingTagsArray = new Array();
+		var lines = textData.split('\n');
+		for (var x = 0; x < lines.length; x++){
+			var openingTagsArray = lines[x].match(/<\w+((\s+\w+(\s*=\s*(?:".*?"|'.*?'|[^'">\s]+))?)+\s*|\s*)>/g);
+			var closingTagsArray = lines[x].match(/<(\/{1})\w+((\s+\w+(\s*=\s*(?:".*?"|'.*?'|[^'">\s]+))?)+\s*|\s*)>/g);
+			console.log(closingTagsArray);
+			if (openingTagsArray) {
+				for (var i = 0; i < openingTagsArray.length; i++) {
+					console.log(openingTagsArray[i]);
+					var openingTagSubstring=openingTagsArray[i].substr(1, openingTagsArray[i].length-2);
+					var closingTagSubstring=closingTagsArray[i].substr(2, closingTagsArray[i].length-3);
+					console.log(openingTagSubstring);
+					console.log(closingTagSubstring);
+					if (closingTagsArray.length >= 0 && openingTagsArray) {
+						elementToPop = openingTagsArray[i].substr(1, tagsArray[i].length-2);
+						elementToPop = elementToPop.replace(/ /g, '');
+						for (var j = holderArray.length-1; j >= 0 ; j--) {
+							if (holderArray[j].element == elementToPop) {
+								holderArray.splice(j, 1);
+								if (elementToPop != 'html') {
+									break;
+							}
+						}
+					}
+			}
+
+			}
+		}
+	}
+                
+		// if(checkHTML(textData.split(" "))){
 			$("#tag-validation").html("Correctly tagged paragraph");
-		}
-		else{
+		// }
+		// else{
 			$("#tag-validation").html("Expected # found...");
-		}
+		// }
 		
 		// $.get(fileData[0].name, function(data) {
 			// console.log(data.toString());
